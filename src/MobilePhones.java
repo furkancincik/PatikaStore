@@ -1,6 +1,6 @@
 import java.util.TreeSet;
 
-public class MobilePhones {
+public class MobilePhones implements Comparable<MobilePhones>{
     private int id;
     private String brand;
     private String name;
@@ -33,8 +33,10 @@ public class MobilePhones {
     }
 
 
-
-
+    @Override
+    public int compareTo(MobilePhones otherMobilePhone) {
+        return Integer.compare(this.id,otherMobilePhone.id);
+    }
 
     //getter's
     public int getId() {

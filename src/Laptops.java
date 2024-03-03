@@ -2,7 +2,7 @@ import com.sun.source.tree.Tree;
 
 import java.util.TreeSet;
 
-public class Laptops  {
+public class Laptops implements Comparable<Laptops> {
     private int id;
     private String brand;
     private String name;
@@ -29,6 +29,10 @@ public class Laptops  {
     }
 
 
+    @Override
+    public int compareTo(Laptops otherLaptop) {
+        return Integer.compare(this.id,otherLaptop.id);
+    }
 
     //getter's
     public int getId() {
