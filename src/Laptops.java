@@ -1,4 +1,8 @@
-public class Laptops {
+import com.sun.source.tree.Tree;
+
+import java.util.TreeSet;
+
+public class Laptops  {
     private int id;
     private String brand;
     private String name;
@@ -9,6 +13,9 @@ public class Laptops {
     private int storage;
     private double screenSize;
 
+
+
+    //constructor
     public Laptops(int id, String brand, String name, double price, int stock, double discountRate, int ram, int storage, double screenSize) {
         this.id = id;
         this.brand = brand;
@@ -21,6 +28,9 @@ public class Laptops {
         this.screenSize = screenSize;
     }
 
+
+
+    //getter's
     public int getId() {
         return id;
     }

@@ -1,3 +1,5 @@
+import java.util.TreeSet;
+
 public class MobilePhones {
     private int id;
     private String brand;
@@ -11,6 +13,7 @@ public class MobilePhones {
     private double cameraMegapixel;
     private int baterrycapacity;
     private String color;
+
 
     //constructor
     public MobilePhones(int id, String brand, String name, double price, int stock, double discountRate, int ram, int storage, double screenSize, double cameraMegapixel, int baterrycapacity, String color) {
@@ -26,7 +29,12 @@ public class MobilePhones {
         this.cameraMegapixel = cameraMegapixel;
         this.baterrycapacity = baterrycapacity;
         this.color = color;
+
     }
+
+
+
+
 
     //getter's
     public int getId() {
