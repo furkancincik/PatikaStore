@@ -44,6 +44,7 @@ public class Store {
                     switch (choiceNotebook){
                         case 1:
                             System.out.println("Notebookları görüntüleme");
+                            storeRun.printLaptops();
                             break;
                         case 2:
                             System.out.println("notebook ekleme");
@@ -74,6 +75,7 @@ public class Store {
                             break;
                         case 2:
                             System.out.println("cep telefonu ekleme");
+                            storeRun.addMobilePhone();
                             break;
                         case 3:
                             System.out.println("cel telefonu silme");
@@ -110,6 +112,8 @@ public class Store {
                             int searchLaptopById=inp.nextInt();
                             storeRun.searchLaptopByID(searchLaptopById);
                             break;
+                        default:
+                            System.out.println("Geçersiz giriş yaptınız. Ana Menüye Dönülüyor.");
                     }
                     break;
 
