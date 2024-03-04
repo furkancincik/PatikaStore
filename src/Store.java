@@ -102,9 +102,13 @@ public class Store {
                     switch (choiceSearch){
                         case 1:
                             System.out.print("Aramak istediginiz telefon ID'sini giriniz:");
+                            int searchPhoneById=inp.nextInt();
+                            storeRun.searchPhoneByID(searchPhoneById);
                             break;
                         case 2:
                             System.out.print("Aramak istediginiz laptop ID'sini giriniz:");
+                            int searchLaptopById=inp.nextInt();
+                            storeRun.searchLaptopByID(searchLaptopById);
                             break;
                     }
                     break;

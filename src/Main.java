@@ -1,9 +1,9 @@
 public class Main {
     public static void main(String[] args) {
 
-        Store store =new Store();
-        store.printStore();
-
+        while(true){
+            System.out.println("furkan");
+        }
 
 
 

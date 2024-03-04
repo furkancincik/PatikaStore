@@ -24,7 +24,7 @@ public class StoreRun {
         TreeSet<MobilePhones> mobilePhones = productManagement.getMobilePhonelist();
         System.out.println("---Telefonlar---");
         for (MobilePhones m : mobilePhones) {
-            System.out.println("  ID: " + m.getId() +"| Name: "+m.getName());
+            System.out.println("  ID: " + m.getId() + "| Name: " + m.getName());
         }
 
     }
@@ -47,25 +47,33 @@ public class StoreRun {
 
     }
 
-    /*//Urun Arama  searchTelefonByID
-    public int searchPhoneByID(){
-
-
-        return
-    }*/
-
-
-
-
-
-    //Urun Arama  searchLaptopByID
-    public void searchLaptopByID(){
-
-
+    //Urun Arama  searchTelefonByID
+    public void searchPhoneByID(int searchPhoneById) {
+        for (MobilePhones phones : productManagement.getMobilePhonelist()) {
+            if (phones.getId() == searchPhoneById) {
+                System.out.println("Telefon Mevcut.");
+                System.out.println("Stok : " + phones.getStock());
+                System.out.println();
+            }
+        }
     }
 
 
+    //Urun Arama  searchLaptopByID
+    public void searchLaptopByID(int searchLaptopById) {
+        for (Laptops laptops : productManagement.getLaptopLists()){
+            if (laptops.getId() == searchLaptopById){
+                System.out.println("Laptop Mevcut.");
+                System.out.println("Stok : " + laptops.getStock());
+                System.out.println();
 
+
+            }
+        }
+
+
+
+    }
 
 
 }
