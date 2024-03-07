@@ -284,6 +284,7 @@ public class StoreRun {
     //Telefon silme metodu
     public TreeSet<MobilePhones> removePhone() {
         System.out.println("Telefon Silme Menüsü");
+        System.out.println();
         int ID = -1;
         boolean inRemovePhone = true;
         while (inRemovePhone) {
@@ -304,9 +305,59 @@ public class StoreRun {
             Iterator<MobilePhones> itr = productManagement.getMobilePhonelist().iterator();
             while (itr.hasNext()) {
                 MobilePhones phone = itr.next();
-                if (phone.getId() == ID){
+                if (phone.getId() == ID) {
                     System.out.println("Bu ID'ye sahip bir telefon bulundu.");
                     System.out.println(phone.getName() + " Bu telefon Silindi !");
+                    itr.remove();
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                System.out.println("Girdiginiz ID'ye ait bir telefon bulunamadı.");
+                System.out.println("Lutfen listedeki telefonlardan birisini seçiniz.");
+                for (MobilePhones p : productManagement.getMobilePhonelist()) {
+                    System.out.println(p);
+                }
+            } else {
+                break;//ID bulundu.
+            }
+
+        }
+
+        return productManagement.getMobilePhonelist();
+    }
+
+
+    // Laptop silme metodu
+
+    public TreeSet<Laptops> removeLaptop() {
+        System.out.println("Notebook Silme Menüsü");
+        System.out.println();
+        int ID = -1;
+        boolean isRemoveLaptop = true;
+        while (isRemoveLaptop) {
+            System.out.println("Silmek istediginiz notebookun ID sini giriniz(ID sıfırdan büyük bir tam sayı olmalıdır)");
+            while (!inp.hasNextInt()) {
+                System.out.println("Geçersiz giriş. Lutfen sıfırdan büyük bir tam sayı giriniz.");
+                inp.next();
+            }
+            ID = inp.nextInt();
+            inp.nextLine();
+
+            if (ID <= 0) {
+                System.out.println("Geçersiz ID. ID sıfırdan büyük bir tam sayı olmalıdır.");
+                continue;
+            }
+
+            boolean found = false;
+            Iterator<Laptops> itr = productManagement.getLaptopLists().iterator();
+            while (itr.hasNext()){
+                Laptops laptop = itr.next();
+                if (laptop.getId() == ID){
+                    System.out.println("Bu ID'ye sahip bir telefon bulundu.");
+                    System.out.println(laptop.getName()+" Bu Notebook silindi !");
                     itr.remove();
                     found=true;
                     break;
@@ -316,16 +367,16 @@ public class StoreRun {
             if (!found){
                 System.out.println("Girdiginiz ID'ye ait bir telefon bulunamadı.");
                 System.out.println("Lutfen listedeki telefonlardan birisini seçiniz.");
-                for (MobilePhones p : productManagement.getMobilePhonelist()){
-                    System.out.println(p);
+                for (Laptops l : productManagement.getLaptopLists()){
+                    System.out.println(l);
                 }
-            }else {
-                break;//ID bulundu.
+            }else{
+                break;//Bulunmuş oldu
             }
 
         }
 
-        return productManagement.getMobilePhonelist();
+        return productManagement.getLaptopLists();
     }
 
 
@@ -353,6 +404,12 @@ public class StoreRun {
             }
         }
     }
+
+
+
+
+    // URUN FILTRELEME
+
 
 
 }

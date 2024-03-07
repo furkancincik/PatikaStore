@@ -36,12 +36,15 @@ public class Store {
                     System.out.println("| Notebook'ları görüntüle(1)                               |");
                     System.out.println("| Notebook eklemek icin  (2)                               |");
                     System.out.println("| Notebook silmek icin   (3)                               |");
-                    System.out.println("| Ana Menüye Dön         (4)                               |");
+                    System.out.println("| Ana Menüye Dön         (0)                               |");
                     System.out.println("------------------------------------------------------------");
                     System.out.println();
                     System.out.print("Yapmak istediğiniz işlemi seçin: ");
                     int choiceNotebook = inp.nextInt();
                     switch (choiceNotebook){
+                        case 0:
+                            System.out.println("Ana Menüye dönülüyor");
+                            break;
                         case 1:
                             System.out.println("Notebookları görüntüleme");
                             storeRun.printLaptops();
@@ -52,6 +55,7 @@ public class Store {
                             break;
                         case 3:
                             System.out.println("Notebook silme");
+                            storeRun.removeLaptop();
                             break;
                         default:
                             System.out.println("Gecersiz giris yaptınız");
@@ -64,12 +68,15 @@ public class Store {
                     System.out.println("| Cep Telefonlarını Görüntüle (1)                          |");
                     System.out.println("| Cep Telefonu Ekle           (2)                          |");
                     System.out.println("| Cep Telefonu Sil            (3)                          |");
-                    System.out.println("| Ana Menüye Dön              (4)                          |");
+                    System.out.println("| Ana Menüye Dön              (0)                          |");
                     System.out.println("------------------------------------------------------------");
                     System.out.println();
                     System.out.print("Yapmak istediğiniz işlemi seçin: ");
                     int choicePhone = inp.nextInt();
                     switch (choicePhone){
+                        case 0:
+                            System.out.println("Ana Menüye dönülüyor");
+                            break;
                         case 1:
                             System.out.println("Cep telefonu görüntüleme");
                             storeRun.printPhones();
@@ -81,9 +88,6 @@ public class Store {
                         case 3:
                             System.out.println("cel telefonu silme");
                             storeRun.removePhone();
-                            break;
-                        case 4:
-                            System.out.println("Ana Menüye dönülüyor");
                             break;
                         default:
                             System.out.println("Gecersiz giris yaptınız");
@@ -99,11 +103,15 @@ public class Store {
                 case 4:
                     System.out.println("------------------------------------------------------------");
                     System.out.println("| Arama Islemi  --  Telefon icin(1) / Laptop icin(2)       |");
+                    System.out.println("| IPTAL / CIKIS icin (0)                                   |");
                     System.out.println("------------------------------------------------------------");
                     System.out.print("Secim:");
                     int choiceSearch=inp.nextInt();
                     System.out.println();
                     switch (choiceSearch){
+                        case 0:
+                            System.out.println("Ana Menüye dönülüyor");
+                            break;
                         case 1:
                             System.out.print("Aramak istediginiz telefon ID'sini giriniz:");
                             int searchPhoneById=inp.nextInt();
