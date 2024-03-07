@@ -48,6 +48,7 @@ public class Store {
                             break;
                         case 2:
                             System.out.println("notebook ekleme");
+                            storeRun.addLaptop();
                             break;
                         case 3:
                             System.out.println("Notebook silme");
@@ -79,6 +80,7 @@ public class Store {
                             break;
                         case 3:
                             System.out.println("cel telefonu silme");
+                            storeRun.removePhone();
                             break;
                         case 4:
                             System.out.println("Ana Menüye dönülüyor");
