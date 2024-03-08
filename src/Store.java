@@ -129,8 +129,24 @@ public class Store {
 
                 case 5:
                     System.out.println("\n----------------------------------------------------------");
-                    System.out.println("| Ürünler Markaya Göre Filtreleniyor                     |");
-                    System.out.println("----------------------------------------------------------");
+                    System.out.println("| Markaya göre filtreleme(1) / ID ye göre filtreleme (2)   |");
+                    System.out.println("| IPTAL / CIKIS icin (0)                                   |");
+                    System.out.println("------------------------------------------------------------");
+                    int choiceFilter = inp.nextInt();
+                    switch (choiceFilter){
+                        case 0:
+                            System.out.println("Ana menüye dönülüyor.");
+                            break;
+                        case 1:
+                            System.out.println("Markaya Göre Filtreleme Menüsü");
+                            storeRun.filterProductByBrandName();
+                        case 2:
+                            System.out.println("ID'ye Göre Filtreleme Menüsü");
+                            storeRun.filterProductByID();
+                            break;
+                        default:
+                            System.out.println("Geçersiz giriş yaptınız.Ana Menüye Dönülüyor");
+                    }
                     break;
                 default:
                     System.out.println("Geçersiz işlem seçeneği! Lütfen tekrar deneyin.");

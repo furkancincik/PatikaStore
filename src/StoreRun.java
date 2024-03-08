@@ -1,5 +1,6 @@
 import com.sun.source.tree.Tree;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.TreeSet;
@@ -216,7 +217,7 @@ public class StoreRun {
         }
 
 
-        System.out.println("Eklemek istediğiniz telefonun markasını seçiniz! ");
+        System.out.println("Eklemek istediğiniz notebook markasını seçiniz! ");
         String laptopBrand = inp.nextLine();
         boolean isContain = false;
 
@@ -273,7 +274,7 @@ public class StoreRun {
         inp.nextLine(); // Yeni satır karakterini temizle
 
         Laptops newLaptop = new Laptops(ID, laptopBrand, model, price, stock, discountRate, ram, storage, screenSize);
-        System.out.println("Telefon başarıyla veritabanına eklendi!");
+        System.out.println("Notebook başarıyla veritabanına eklendi!");
 
         productManagement.addLaptops(newLaptop);
 
@@ -353,24 +354,24 @@ public class StoreRun {
 
             boolean found = false;
             Iterator<Laptops> itr = productManagement.getLaptopLists().iterator();
-            while (itr.hasNext()){
+            while (itr.hasNext()) {
                 Laptops laptop = itr.next();
-                if (laptop.getId() == ID){
+                if (laptop.getId() == ID) {
                     System.out.println("Bu ID'ye sahip bir telefon bulundu.");
-                    System.out.println(laptop.getName()+" Bu Notebook silindi !");
+                    System.out.println(laptop.getName() + " Bu Notebook silindi !");
                     itr.remove();
-                    found=true;
+                    found = true;
                     break;
                 }
             }
 
-            if (!found){
+            if (!found) {
                 System.out.println("Girdiginiz ID'ye ait bir telefon bulunamadı.");
                 System.out.println("Lutfen listedeki telefonlardan birisini seçiniz.");
-                for (Laptops l : productManagement.getLaptopLists()){
+                for (Laptops l : productManagement.getLaptopLists()) {
                     System.out.println(l);
                 }
-            }else{
+            } else {
                 break;//Bulunmuş oldu
             }
 
@@ -406,10 +407,245 @@ public class StoreRun {
     }
 
 
+    //Filtreleme Telefon
+    public void filterMobilePhoneByBrand(String brand) {
+        ArrayList<MobilePhones> sameBrandPhones = new ArrayList<>();
+        boolean found = false;
+
+        for (MobilePhones p : productManagement.getMobilePhonelist()) {
+            if (p.getBrand().equalsIgnoreCase(brand)) {
+                sameBrandPhones.add(p);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Aradığınız markada telefon bulunamadı !");
+            System.out.println("Ana menüye dönülüyor...");
+            System.out.println();
+            return;
+        }
+
+        System.out.println("Tebrikler, aradığınız markada olan telefonlar bulundu:");
+        System.out.println(" Bilgiler :");
+        System.out.println(" ----------------------------------------------------------------------------------------------------------------|");
+        System.out.println(" | ID | Ürün Adı                | Fiyat    | Marka    | Depolama   | Ekran   | Kamera | Batarya | RAM  | Renk    |");
+        System.out.println(" ----------------------------------------------------------------------------------------------------------------|");
+
+        for (MobilePhones p2 : sameBrandPhones) {
+            System.out.printf(" | %-2s| %-24s| %-9s| %-9s| %-11s| %-8s| %-7s| %-9s| %-5s| %-8s|\n", p2.getId(), p2.getName(), p2.getPrice(), p2.getBrand(), p2.getStorage(), p2.getScreenSize(), p2.getCameraMegapixel(), p2.getBaterrycapacity(), p2.getRam(), p2.getColor());
+            System.out.println("--------------------------------------------------------------------------------------------------------------");
+
+        }
+    }
 
 
-    // URUN FILTRELEME
+    //Filtreleme Laptop
 
+    public void filterLaptopByBrand(String brand) {
+        ArrayList<Laptops> sameBrandLaptop = new ArrayList<>();
+        boolean found = false;
+
+        for (Laptops l : productManagement.getLaptopLists()) {
+            if (l.getBrand().equalsIgnoreCase(brand)) {
+                sameBrandLaptop.add(l);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Aradığınız markada laptop bulunamadı !");
+            System.out.println("Ana menüye dönülüyor...");
+            System.out.println();
+            return;
+        }
+
+        System.out.println("Tebrikler aradığınız marka olan laptoplar bulundu");
+        System.out.println(" Bilgiler :");
+        System.out.println(" ----------------------------------------------------------------------------------------------------------------|");
+        System.out.println(" | ID | Ürün Adı                | Fiyat    | Marka    | Depolama   | Ekran   | RAM                               |");
+        System.out.println(" ----------------------------------------------------------------------------------------------------------------|");
+
+        for (Laptops l2 : sameBrandLaptop) {
+            System.out.printf(" | %-2s| %-24s| %-9s| %-9s| %-11s| %-8s| %-7s|\n", l2.getId(), l2.getName(), l2.getPrice(), l2.getBrand(), l2.getStorage(), l2.getScreenSize(), l2.getRam());
+            System.out.println("--------------------------------------------------------------------------------------------------------------");
+        }
+    }
+
+
+    // URUN FILTRELEME MARKA METODU
+
+    public void filterProductByBrandName() {
+        productManagement.getLaptopLists();
+        productManagement.getMobilePhonelist();
+
+        boolean check = true;
+
+        while (check) {
+            System.out.println("Filtreleme işlemi (1) / Çıkış (0)");
+            int choice = inp.nextInt();
+
+            switch (choice) {
+                case 0:
+                    System.out.println("Ana Menüye Dönülüyor");
+                    check = false;
+                    break;
+                case 1:
+                    System.out.println("Filtreleme yapmak istediginiz urun kategorisini seciniz :");
+                    System.out.println("1- Telefonlar");
+                    System.out.println("2- Laptoplar");
+                    System.out.println("0- Ana ekran");
+                    int secim = inp.nextInt();
+                    switch (secim) {
+                        case 0:
+                            System.out.println("Ana Menüye Dönülüyor");
+                            break;
+                        case 1:
+                            System.out.print("Filtrelemek istediginiz telefon markası:");
+                            String phoneBrandName = inp.next();
+                            filterMobilePhoneByBrand(phoneBrandName);
+                            break;
+                        case 2:
+                            System.out.print("Filtrelemek istediginiz Notebook markası:");
+                            String laptopBrandName = inp.next();
+                            filterLaptopByBrand(laptopBrandName);
+                            break;
+                        default:
+                            System.out.println("Geçersiz bir giriş yaptınız.");
+                    }
+            }
+
+        }
+
+
+    }
+
+
+    // telefon FILTRELEME  ID
+    public void filterPhoneByID(int id1, int id2) {
+        ArrayList<MobilePhones> phoneListByID = new ArrayList<>();
+        boolean found = false;
+
+
+        for (MobilePhones p : productManagement.getMobilePhonelist()) {
+            if (id1 <= p.getId() && p.getId() <= id2) {
+                phoneListByID.add(p);
+                found = true;
+            }
+        }
+
+
+        if (!found) {
+            System.out.println("Aradığınız markada telefon bulunamadı !");
+            System.out.println("Ana menüye dönülüyor...");
+            System.out.println();
+            return;
+        }
+
+        System.out.println("Tebrikler, aradığınız markada olan telefonlar bulundu:");
+        System.out.println(" Bilgiler :");
+        System.out.println(" ----------------------------------------------------------------------------------------------------------------|");
+        System.out.println(" | ID | Ürün Adı                | Fiyat    | Marka    | Depolama   | Ekran   | Kamera | Batarya | RAM  | Renk    |");
+        System.out.println(" ----------------------------------------------------------------------------------------------------------------|");
+
+        for (MobilePhones p2 : phoneListByID) {
+            System.out.printf(" | %-2s| %-24s| %-9s| %-9s| %-11s| %-8s| %-7s| %-9s| %-5s| %-8s|\n", p2.getId(), p2.getName(), p2.getPrice(), p2.getBrand(), p2.getStorage(), p2.getScreenSize(), p2.getCameraMegapixel(), p2.getBaterrycapacity(), p2.getRam(), p2.getColor());
+            System.out.println("--------------------------------------------------------------------------------------------------------------");
+
+        }
+    }
+
+
+    // laptop FILTRELEME  ID
+
+    public void filterNotebookByID(int id1, int id2) {
+        ArrayList<Laptops> laptopListByID = new ArrayList<>();
+        boolean found = false;
+
+
+        for (Laptops l : productManagement.getLaptopLists()) {
+            if (id1 <= l.getId() && l.getId() <= id2) {
+                laptopListByID.add(l);
+                found = true;
+            }
+        }
+
+
+        if (!found) {
+            System.out.println("Aradığınız markada laptop bulunamadı !");
+            System.out.println("Ana menüye dönülüyor...");
+            System.out.println();
+            return;
+        }
+
+
+        System.out.println("Tebrikler aradığınız marka olan laptoplar bulundu");
+        System.out.println(" Bilgiler :");
+        System.out.println(" ----------------------------------------------------------------------------------------------------------------|");
+        System.out.println(" | ID | Ürün Adı                | Fiyat    | Marka    | Depolama   | Ekran   | RAM                               |");
+        System.out.println(" ----------------------------------------------------------------------------------------------------------------|");
+
+
+        for (Laptops l2 : laptopListByID) {
+            System.out.printf(" | %-2s| %-24s| %-9s| %-9s| %-11s| %-8s| %-7s|\n", l2.getId(), l2.getName(), l2.getPrice(), l2.getBrand(), l2.getStorage(), l2.getScreenSize(), l2.getRam());
+            System.out.println("--------------------------------------------------------------------------------------------------------------");
+        }
+    }
+
+
+    //ID Filter Metot
+
+    public void filterProductByID() {
+        productManagement.getMobilePhonelist();
+        productManagement.getLaptopLists();
+
+        boolean check = true;
+
+        while (check) {
+            System.out.println("Filtreleme işlemi (1) / Çıkış (0)");
+            int choice = inp.nextInt();
+
+            switch (choice) {
+                case 0:
+                    System.out.println("Çıkış yapılıyor");
+                    check = false;
+                    break;
+                case 1:
+                    System.out.println("Filtreleme yapmak istediginiz urun kategorisini seciniz :");
+                    System.out.println("1- Telefonlar");
+                    System.out.println("2- Laptoplar");
+                    System.out.println("0- Ana ekran");
+                    int secim = inp.nextInt();
+                    switch (secim) {
+                        case 0:
+                            System.out.println("Ana Menüye Dönülüyor ");
+                            break;
+                        case 1:
+                            System.out.println("Telefon Filtreleme Menüsü (ID)");
+                            System.out.println();
+                            System.out.print("Filtrelemek icin aralık giriniz - ID1 (alt sınır):");
+                            int phoneFilterID1 = inp.nextInt();
+                            System.out.print("Filtrelemek icin aralık giriniz - ID2 (üst sınır):");
+                            int phoneBrandID2 = inp.nextInt();
+                            filterPhoneByID(phoneFilterID1, phoneBrandID2);
+                            break;
+                        case 2:
+                            System.out.println("Laptop Filtreleme Menüsü (ID)");
+                            System.out.println();
+                            System.out.print("Filtrelemek icin aralık giriniz - ID1 (alt sınır):");
+                            int laptopFilterID1 = inp.nextInt();
+                            System.out.print("Filtrelemek icin aralık giriniz - ID2 (üst sınır):");
+                            int laptopFilterID2 = inp.nextInt();
+                            filterNotebookByID(laptopFilterID1, laptopFilterID2);
+                            break;
+                        default:
+                            System.out.println("Geçersiz Giriş Yaptınız !");
+                    }
+            }
+        }
+
+
+    }
 
 
 }
